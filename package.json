@@ -1,5 +1,5 @@
 {
-  "name": "@ycloud/n8n-nodes-ycloud",
+  "name": "@ycloud-ai/n8n-nodes-ycloud",
   "version": "0.1.0",
   "description": "n8n community node for YCloud API integration",
   "license": "MIT",

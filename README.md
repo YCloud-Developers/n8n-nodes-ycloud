@@ -1,4 +1,4 @@
-# @ycloud/n8n-nodes-ycloud
+# @ycloud-ai/n8n-nodes-ycloud
 
 This is an n8n community node. It lets you use [YCloud](https://www.ycloud.com/) in your n8n workflows.
 

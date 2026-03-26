@@ -1,5 +1,5 @@
 {
-	"node": "@ycloud/n8n-nodes-ycloud",
+	"node": "@ycloud-ai/n8n-nodes-ycloud",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Communication", "Marketing & Growth"],
