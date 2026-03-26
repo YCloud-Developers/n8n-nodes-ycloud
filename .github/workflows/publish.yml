@@ -72,6 +72,9 @@ jobs:
       # Scoped down from the default (write) for least-privilege publishing.
       contents: read
 
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       - uses: actions/checkout@v4
 
