@@ -1,0 +1,140 @@
+import type { INodeProperties } from 'n8n-workflow';
+
+const showOnlyForSendInteractiveList = {
+	operation: ['sendInteractiveList'],
+	resource: ['message'],
+};
+
+export const messageSendInteractiveListDescription: INodeProperties[] = [
+	{
+		displayName: 'From',
+		name: 'from',
+		type: 'string',
+		required: true,
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		default: '',
+		placeholder: '16315551234',
+		description: 'Sender phone number in E.164 format',
+	},
+	{
+		displayName: 'To',
+		name: 'to',
+		type: 'string',
+		required: true,
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		default: '',
+		placeholder: '16315551234',
+		description: 'Recipient phone number in E.164 format',
+	},
+	{
+		displayName: 'Body Text',
+		name: 'bodyText',
+		type: 'string',
+		required: true,
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		default: '',
+		typeOptions: { rows: 4 },
+		description: 'Message body text',
+	},
+	{
+		displayName: 'Button Text',
+		name: 'buttonText',
+		type: 'string',
+		required: true,
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		default: '',
+		description: 'Text on the list button',
+	},
+	{
+		displayName: 'Sections',
+		name: 'sections',
+		type: 'fixedCollection',
+		required: true,
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		typeOptions: {
+			multipleValues: true,
+			maxValue: 10,
+		},
+		default: {},
+		placeholder: 'Add Section',
+		options: [
+			{
+				displayName: 'Section',
+				name: 'sectionValues',
+				values: [
+					{
+						displayName: 'Title',
+						name: 'title',
+						type: 'string',
+						default: '',
+						placeholder: 'Section 1',
+						description: 'Section title. Required if more than one section. Max 24 characters.',
+					},
+					{
+						displayName: 'Rows',
+						name: 'rows',
+						type: 'fixedCollection',
+						required: true,
+						typeOptions: {
+							multipleValues: true,
+							maxValue: 10,
+						},
+						default: {},
+						placeholder: 'Add Row',
+						options: [
+							{
+								displayName: 'Row',
+								name: 'rowValues',
+								values: [
+									{
+										displayName: 'Title',
+										name: 'title',
+										type: 'string',
+										required: true,
+										default: '',
+										placeholder: 'Row 1',
+										description: 'Row title. Max 24 characters.',
+									},
+									{
+										displayName: 'ID',
+										name: 'id',
+										type: 'string',
+										required: true,
+										default: '',
+										placeholder: 'row_1',
+										description: 'Unique row ID. Max 200 characters.',
+									},
+									{
+										displayName: 'Description',
+										name: 'description',
+										type: 'string',
+										default: '',
+										description: 'Row description. Max 72 characters.',
+									},
+								],
+							},
+						],
+						description: 'Rows in this section. Total max 10 rows across all sections.',
+					},
+				],
+			},
+		],
+		description: 'List sections. Up to 10 sections.',
+	},
+	{
+		displayName: 'Header',
+		name: 'header',
+		type: 'string',
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		default: '',
+		description: 'Optional header text',
+	},
+	{
+		displayName: 'Footer',
+		name: 'footer',
+		type: 'string',
+		displayOptions: { show: showOnlyForSendInteractiveList },
+		default: '',
+		description: 'Optional footer text',
+	},
+];

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.tgz
+.claude/
+.playwright-mcp/
+.vscode/
+2026-*.txt
