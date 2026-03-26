@@ -1,18 +1,16 @@
-# @ycloud/n8n-nodes-ycloud-n8n
+# @ycloud/n8n-nodes-ycloud
 
-This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
+This is an n8n community node. It lets you use [YCloud](https://www.ycloud.com/) in your n8n workflows.
 
-_App/service name_ is _one or two sentences describing the service this node integrates with_.
+YCloud is a cloud communication platform providing WhatsApp Business API, SMS, and other messaging services for businesses.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
-[Installation](#installation)
-[Operations](#operations)
-[Credentials](#credentials)
-[Compatibility](#compatibility)
-[Usage](#usage)
+[Installation](#installation) |
+[Operations](#operations) |
+[Credentials](#credentials) |
+[Compatibility](#compatibility) |
 [Resources](#resources)
-[Version history](#version-history)
 
 ## Installation
 
@@ -20,27 +18,35 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-_List the operations supported by your node._
+### WhatsApp Template
+- **Get Many** - Retrieve a list of WhatsApp templates with optional filters (WABA ID, template name, language)
+
+### Message
+- **Send Text** - Send a text message
+- **Send Template** - Send a template message with dynamic variable loading
+- **Send Button** - Send an interactive button message (up to 3 reply buttons)
+- **Send List** - Send an interactive list message with sections and rows
+
+### Contact
+- **Create** - Create a new contact
+- **Get** - Retrieve a contact by ID
+- **Get Many** - Retrieve a list of contacts with optional filters (tags, country code, phone number, email)
 
 ## Credentials
 
-_If users need to authenticate with the app/service, provide details here. You should include prerequisites (such as signing up with the service), available authentication methods, and how to set them up._
+You need a YCloud API key to use this node.
+
+1. Sign up at [YCloud](https://www.ycloud.com/)
+2. Go to your dashboard and navigate to **Settings** > **API Keys**
+3. Copy your API key
+4. In n8n, create a new **YCloud API** credential and paste your API key
 
 ## Compatibility
 
-_State the minimum n8n version, as well as which versions you test against. You can also include any known version incompatibility issues._
-
-## Usage
-
-_This is an optional section. Use it to help users with any difficult or confusing aspects of the node._
-
-_By the time users are looking for community nodes, they probably already know n8n basics. But if you expect new users, you can link to the [Try it out](https://docs.n8n.io/try-it-out/) documentation to help them get started._
+Tested with n8n version 2.13.x. Minimum required version: 1.x.
 
 ## Resources
 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* _Link to app/service documentation._
-
-## Version history
-
-_This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._
+* [YCloud API documentation](https://docs.ycloud.com/reference)
+* [YCloud website](https://www.ycloud.com/)

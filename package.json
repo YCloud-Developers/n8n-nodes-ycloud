@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "n8n community node for YCloud API integration",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/YCloud-Developers/n8n-nodes-ycloud",
   "keywords": ["n8n-community-node-package"],
   "author": { "name": "songqijun", "email": "songqijun@qipeng.com" },
   "repository": {

@@ -1,17 +1,17 @@
 {
-	"node": "@ycloud/n8n-nodes-ycloud-n8n",
+	"node": "@ycloud/n8n-nodes-ycloud",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Development", "Developer Tools"],
+	"categories": ["Communication", "Marketing & Growth"],
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://github.com/org/repo?tab=readme-ov-file#credentials"
+				"url": "https://github.com/YCloud-Developers/n8n-nodes-ycloud?tab=readme-ov-file#credentials"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://github.com/org/repo?tab=readme-ov-file"
+				"url": "https://github.com/YCloud-Developers/n8n-nodes-ycloud?tab=readme-ov-file"
 			}
 		]
 	}
