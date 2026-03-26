@@ -23,8 +23,8 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "strict": true,
-    "credentials": ["dist/credentials/YcloudYcloudN8nApi.credentials.js"],
-    "nodes": ["dist/nodes/YcloudYcloudN8n/YcloudYcloudN8n.node.js"]
+    "credentials": ["dist/credentials/YCloudApi.credentials.js"],
+    "nodes": ["dist/nodes/YCloud/YCloud.node.js"]
   },
   "devDependencies": {
     "@n8n/node-cli": "*",

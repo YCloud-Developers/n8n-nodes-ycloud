@@ -5,8 +5,8 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class YcloudYcloudN8nApi implements ICredentialType {
-	name = 'ycloudYcloudN8nApi';
+export class YCloudApi implements ICredentialType {
+	name = 'yCloudApi';
 
 	displayName = 'YCloud API';
 

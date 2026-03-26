@@ -26,10 +26,10 @@ interface TemplateComponent {
 	}>;
 }
 
-export class YcloudYcloudN8n implements INodeType {
+export class YCloud implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'YCloud WhatsApp',
-		name: 'ycloudYcloudN8n',
+		name: 'yCloud',
 		icon: 'file:YCloud.svg',
 		group: ['transform'],
 		version: 1,
@@ -41,7 +41,7 @@ export class YcloudYcloudN8n implements INodeType {
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
-		credentials: [{ name: 'ycloudYcloudN8nApi', required: true }],
+		credentials: [{ name: 'yCloudApi', required: true }],
 		requestDefaults: {
 			baseURL: 'https://api.ycloud.com/v2',
 			headers: {
@@ -93,7 +93,7 @@ export class YcloudYcloudN8n implements INodeType {
 				try {
 					const response = await this.helpers.httpRequestWithAuthentication.call(
 						this,
-						'ycloudYcloudN8nApi',
+						'yCloudApi',
 						{
 							method: 'GET',
 							url: `/whatsapp/templates/${wabaId}/${templateName}/${languageCode}`,
