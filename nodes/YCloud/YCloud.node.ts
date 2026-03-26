@@ -29,7 +29,7 @@ interface TemplateComponent {
 export class YCloud implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'YCloud WhatsApp',
-		name: 'yCloud',
+		name: 'ycloud',
 		icon: 'file:YCloud.svg',
 		group: ['transform'],
 		version: 1,
@@ -41,7 +41,7 @@ export class YCloud implements INodeType {
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
-		credentials: [{ name: 'yCloudApi', required: true }],
+		credentials: [{ name: 'ycloudApi', required: true }],
 		requestDefaults: {
 			baseURL: 'https://api.ycloud.com/v2',
 			headers: {
@@ -93,7 +93,7 @@ export class YCloud implements INodeType {
 				try {
 					const response = await this.helpers.httpRequestWithAuthentication.call(
 						this,
-						'yCloudApi',
+						'ycloudApi',
 						{
 							method: 'GET',
 							url: `/whatsapp/templates/${wabaId}/${templateName}/${languageCode}`,

@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 
 export class YCloudApi implements ICredentialType {
-	name = 'yCloudApi';
+	name = 'ycloudApi';
 
 	displayName = 'YCloud API';
 
