@@ -24,6 +24,9 @@ interface TemplateComponent {
 		url?: string;
 		example?: string[];
 	}>;
+	cards?: Array<{
+		components: TemplateComponent[];
+	}>;
 }
 
 export class Ycloud implements INodeType {
@@ -127,8 +130,9 @@ export class Ycloud implements INodeType {
 								component.format &&
 								['IMAGE', 'VIDEO', 'DOCUMENT'].includes(component.format)
 							) {
+								const mediaType = component.format.toLowerCase();
 								fields.push({
-									id: `header_media_url`,
+									id: `header_media_${mediaType}`,
 									displayName: `Header Media URL (${component.format})`,
 									required: true,
 									defaultMatch: false,
@@ -166,6 +170,58 @@ export class Ycloud implements INodeType {
 										display: true,
 										type: 'string',
 									});
+								}
+							});
+						}
+
+						if (compType === 'CAROUSEL' && component.cards) {
+							component.cards.forEach((card, cardIdx) => {
+								for (const cardComp of card.components) {
+									if (
+										cardComp.type === 'HEADER' &&
+										cardComp.format &&
+										['IMAGE', 'VIDEO', 'DOCUMENT'].includes(cardComp.format)
+									) {
+										const mediaType = cardComp.format.toLowerCase();
+										fields.push({
+											id: `carousel_${cardIdx}_header_media_${mediaType}`,
+											displayName: `Card ${cardIdx + 1} - Header Media URL (${cardComp.format})`,
+											required: true,
+											defaultMatch: false,
+											canBeUsedToMatch: false,
+											display: true,
+											type: 'string',
+										});
+									}
+									if (cardComp.type === 'BODY' && cardComp.example?.body_text) {
+										const bodyVars = cardComp.example.body_text[0] || [];
+										for (let i = 1; i <= bodyVars.length; i++) {
+											fields.push({
+												id: `carousel_${cardIdx}_body_${i}`,
+												displayName: `Card ${cardIdx + 1} - Body Variable {{${i}}}`,
+												required: true,
+												defaultMatch: false,
+												canBeUsedToMatch: false,
+												display: true,
+												type: 'string',
+											});
+										}
+									}
+									if (cardComp.type === 'BUTTONS' && cardComp.buttons) {
+										cardComp.buttons.forEach((button, btnIdx) => {
+											if (button.type === 'URL' && button.url?.includes('{{')) {
+												fields.push({
+													id: `carousel_${cardIdx}_button_${btnIdx}_url`,
+													displayName: `Card ${cardIdx + 1} - Button "${button.text}" URL Variable`,
+													required: true,
+													defaultMatch: false,
+													canBeUsedToMatch: false,
+													display: true,
+													type: 'string',
+												});
+											}
+										});
+									}
 								}
 							});
 						}

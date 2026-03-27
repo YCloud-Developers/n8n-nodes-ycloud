@@ -196,12 +196,59 @@ export const messageDescription: INodeProperties[] = [
 									parameters: Array<{ type: string; text: string }>;
 								}> = [];
 
+								// 收集 carousel 各 card 的变量
+								const carouselCards: Map<
+									number,
+									{
+										headerParams: Array<{ type: string; [key: string]: unknown }>;
+										bodyParams: Array<{ type: string; text: string }>;
+										buttonParams: Array<{
+											type: string;
+											sub_type: string;
+											index: number;
+											parameters: Array<{ type: string; text: string }>;
+										}>;
+									}
+								> = new Map();
+
 								for (const [key, val] of Object.entries(values)) {
 									if (!val || key === '_no_variables') continue;
 
-									if (key === 'header_media_url') {
-										// 通过URL判断媒体类型（用户填的URL）
-										headerParams.push({ type: 'image', image: { link: val } });
+									if (key.startsWith('carousel_')) {
+										// carousel_0_header_media_video / carousel_0_body_1 / carousel_0_button_0_url
+										const rest = key.replace('carousel_', '');
+										const cardIdx = parseInt(rest.split('_')[0], 10);
+										if (!carouselCards.has(cardIdx)) {
+											carouselCards.set(cardIdx, {
+												headerParams: [],
+												bodyParams: [],
+												buttonParams: [],
+											});
+										}
+										const card = carouselCards.get(cardIdx)!;
+										const cardKey = rest.replace(`${cardIdx}_`, '');
+
+										if (cardKey.startsWith('header_media_')) {
+											const mediaType = cardKey.replace('header_media_', '');
+											card.headerParams.push({
+												type: mediaType,
+												[mediaType]: { link: val },
+											});
+										} else if (cardKey.startsWith('body_')) {
+											card.bodyParams.push({ type: 'text', text: val });
+										} else if (cardKey.startsWith('button_')) {
+											const btnParts = cardKey.split('_');
+											const btnIdx = parseInt(btnParts[1], 10);
+											card.buttonParams.push({
+												type: 'button',
+												sub_type: 'url',
+												index: btnIdx,
+												parameters: [{ type: 'text', text: val }],
+											});
+										}
+									} else if (key.startsWith('header_media_')) {
+										const mediaType = key.replace('header_media_', '');
+										headerParams.push({ type: mediaType, [mediaType]: { link: val } });
 									} else if (key.startsWith('header_')) {
 										headerParams.push({ type: 'text', text: val });
 									} else if (key.startsWith('body_')) {
@@ -233,6 +280,33 @@ export const messageDescription: INodeProperties[] = [
 								}
 								for (const btn of buttonParams) {
 									components.push(btn);
+								}
+
+								// 构建 CAROUSEL components
+								if (carouselCards.size > 0) {
+									const cards: Array<Record<string, unknown>> = [];
+									const sortedIdxs = [...carouselCards.keys()].sort((a, b) => a - b);
+									for (const idx of sortedIdxs) {
+										const card = carouselCards.get(idx)!;
+										const cardComponents: Array<Record<string, unknown>> = [];
+										if (card.headerParams.length > 0) {
+											cardComponents.push({
+												type: 'header',
+												parameters: card.headerParams,
+											});
+										}
+										if (card.bodyParams.length > 0) {
+											cardComponents.push({
+												type: 'body',
+												parameters: card.bodyParams,
+											});
+										}
+										for (const btn of card.buttonParams) {
+											cardComponents.push(btn);
+										}
+										cards.push({ card_index: idx, components: cardComponents });
+									}
+									components.push({ type: 'carousel', cards });
 								}
 
 								if (components.length > 0) {
