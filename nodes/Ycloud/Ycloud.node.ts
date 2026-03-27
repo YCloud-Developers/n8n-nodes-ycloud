@@ -26,7 +26,7 @@ interface TemplateComponent {
 	}>;
 }
 
-export class YCloud implements INodeType {
+export class Ycloud implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'YCloud WhatsApp',
 		name: 'ycloud',
