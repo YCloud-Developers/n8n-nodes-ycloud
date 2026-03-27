@@ -63,7 +63,7 @@ export const messageSendTemplateDescription: INodeProperties[] = [
 			mappingMode: 'defineBelow',
 			value: null,
 		},
-		required: true,
+		required: false,
 		displayOptions: { show: showOnlyForSendTemplate },
 		typeOptions: {
 			loadOptionsDependsOn: ['templateName', 'languageCode', 'wabaId'],
