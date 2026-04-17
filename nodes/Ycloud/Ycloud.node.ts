@@ -1,8 +1,10 @@
 import {
+	NodeApiError,
 	NodeConnectionTypes,
 	type ILoadOptionsFunctions,
 	type INodeType,
 	type INodeTypeDescription,
+	type JsonObject,
 	type ResourceMapperFields,
 } from 'n8n-workflow';
 import { contactDescription } from './resources/contact';
@@ -240,8 +242,11 @@ export class Ycloud implements INodeType {
 					}
 
 					return { fields };
-				} catch {
-					return { fields: [] };
+				} catch (error) {
+					throw new NodeApiError(this.getNode(), error as JsonObject, {
+						message: 'Failed to load template variables',
+						description: 'Could not fetch the WhatsApp template from YCloud. Please verify that the WABA ID, template name, and language code are correct and that the template exists.',
+					});
 				}
 			},
 		},

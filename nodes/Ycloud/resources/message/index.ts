@@ -186,7 +186,7 @@ export const messageDescription: INodeProperties[] = [
 								const body = requestOptions.body as Record<string, unknown>;
 								const template = body.template as Record<string, unknown>;
 
-								// 收集各组件的变量
+								// Collect parameters for each component
 								const headerParams: Array<{ type: string; [key: string]: unknown }> = [];
 								const bodyParams: Array<{ type: string; text: string }> = [];
 								const buttonParams: Array<{
@@ -196,7 +196,7 @@ export const messageDescription: INodeProperties[] = [
 									parameters: Array<{ type: string; text: string }>;
 								}> = [];
 
-								// 收集 carousel 各 card 的变量
+								// Collect parameters for each carousel card
 								const carouselCards: Map<
 									number,
 									{
@@ -282,7 +282,7 @@ export const messageDescription: INodeProperties[] = [
 									components.push(btn);
 								}
 
-								// 构建 CAROUSEL components
+								// Build CAROUSEL components
 								if (carouselCards.size > 0) {
 									const cards: Array<Record<string, unknown>> = [];
 									const sortedIdxs = [...carouselCards.keys()].sort((a, b) => a - b);

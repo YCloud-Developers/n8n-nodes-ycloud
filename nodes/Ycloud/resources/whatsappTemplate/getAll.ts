@@ -7,11 +7,43 @@ const showOnlyForWhatsappTemplateGetAll = {
 
 export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 	{
+		displayName: 'Return All',
+		name: 'returnAll',
+		type: 'boolean',
+		displayOptions: {
+			show: showOnlyForWhatsappTemplateGetAll,
+		},
+		default: false,
+		description: 'Whether to return all results or only up to a given limit',
+		routing: {
+			send: {
+				paginate: '={{ $value }}',
+			},
+			operations: {
+				pagination: {
+					type: 'generic',
+					properties: {
+						continue: '={{ ($response.body.items || []).length >= 100 }}',
+						request: {
+							qs: {
+								page: '={{ $pageCount + 1 }}',
+								limit: 100,
+							},
+						},
+					},
+				},
+			},
+		},
+	},
+	{
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number',
 		displayOptions: {
-			show: showOnlyForWhatsappTemplateGetAll,
+			show: {
+				...showOnlyForWhatsappTemplateGetAll,
+				returnAll: [false],
+			},
 		},
 		typeOptions: {
 			minValue: 1,
@@ -22,6 +54,9 @@ export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 			send: {
 				type: 'query',
 				property: 'limit',
+			},
+			output: {
+				maxResults: '={{ $value }}',
 			},
 		},
 		description: 'Max number of results to return',
