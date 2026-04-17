@@ -92,6 +92,8 @@ Load these before working on the relevant area:
 | Files in `credentials/`              | `.agents/credentials.md`                                            |
 | Adding a new version to a node       | `.agents/versioning.md`                                             |
 | Starting a new task or planning      | `.agents/workflow.md`                                               |
+| Before a release / fixing review feedback | `.agents/n8n-review-checklist.md`                              |
+| Publishing to npm, local Docker testing   | `.agents/release-and-testing.md`                               |
 
 ## Additional resources
 If you need any extra information, here are links to n8n's official docs
