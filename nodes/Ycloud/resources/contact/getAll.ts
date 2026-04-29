@@ -7,42 +7,12 @@ const showOnlyForContactGetAll = {
 
 export const contactGetAllDescription: INodeProperties[] = [
 	{
-		displayName: 'Return All',
-		name: 'returnAll',
-		type: 'boolean',
-		displayOptions: {
-			show: showOnlyForContactGetAll,
-		},
-		default: false,
-		description: 'Whether to return all results or only up to a given limit',
-		routing: {
-			send: {
-				paginate: '={{ $value }}',
-			},
-			operations: {
-				pagination: {
-					type: 'generic',
-					properties: {
-						continue: '={{ ($response.body.items || []).length >= 100 }}',
-						request: {
-							qs: {
-								page: '={{ $pageCount + 1 }}',
-								limit: 100,
-							},
-						},
-					},
-				},
-			},
-		},
-	},
-	{
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number',
 		displayOptions: {
 			show: {
 				...showOnlyForContactGetAll,
-				returnAll: [false],
 			},
 		},
 		typeOptions: {
