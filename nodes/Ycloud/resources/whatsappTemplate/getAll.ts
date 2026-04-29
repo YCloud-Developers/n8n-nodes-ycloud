@@ -84,6 +84,7 @@ export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.wabaId',
+						propertyInDotNotation: false,
 					},
 				},
 			},
@@ -97,6 +98,7 @@ export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.name',
+						propertyInDotNotation: false,
 					},
 				},
 			},
@@ -111,6 +113,7 @@ export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.language',
+						propertyInDotNotation: false,
 					},
 				},
 			},

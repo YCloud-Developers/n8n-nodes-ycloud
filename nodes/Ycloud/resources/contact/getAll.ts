@@ -80,6 +80,7 @@ export const contactGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.countryCode',
+						propertyInDotNotation: false,
 					},
 				},
 			},
@@ -94,6 +95,7 @@ export const contactGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.email',
+						propertyInDotNotation: false,
 					},
 				},
 			},
@@ -108,6 +110,7 @@ export const contactGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.phoneNumber',
+						propertyInDotNotation: false,
 					},
 				},
 			},
@@ -122,6 +125,7 @@ export const contactGetAllDescription: INodeProperties[] = [
 					send: {
 						type: 'query',
 						property: 'filter.tags',
+						propertyInDotNotation: false,
 					},
 				},
 			},
