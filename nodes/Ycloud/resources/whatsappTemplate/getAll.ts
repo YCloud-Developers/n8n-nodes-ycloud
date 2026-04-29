@@ -18,6 +18,9 @@ export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 		routing: {
 			send: {
 				paginate: '={{ $value }}',
+				type: 'query',
+				property: 'limit',
+				value: '100',
 			},
 			operations: {
 				pagination: {
@@ -26,7 +29,7 @@ export const whatsappTemplateGetAllDescription: INodeProperties[] = [
 						continue: '={{ ($response.body.items || []).length >= 100 }}',
 						request: {
 							qs: {
-								page: '={{ $pageCount + 1 }}',
+								page: '={{ Number($response.body.page || 1) + 1 }}',
 								limit: 100,
 							},
 						},
