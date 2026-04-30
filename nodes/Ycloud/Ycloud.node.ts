@@ -37,7 +37,8 @@ export class Ycloud implements INodeType {
 		name: 'ycloud',
 		icon: 'file:YCloud.svg',
 		group: ['transform'],
-		version: 1,
+		version: [1],
+		defaultVersion: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Interact with the YCloud API',
 		defaults: {
